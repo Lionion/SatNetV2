@@ -14,7 +14,7 @@ test_dir = "input/test"
 BATCH_SIZE = 32
 IMG_SIZE = (160, 160)
 test_dataset = tf.keras.utils.image_dataset_from_directory(test_dir,
-                                                           shuffle=True,
+                                                           shuffle=False,
                                                            batch_size=BATCH_SIZE,
                                                            image_size=IMG_SIZE)
 
@@ -98,6 +98,11 @@ for i in range(len(con_mat)):
     recall /= sum
 
     print("The recall of SatNet101 for class " + str(i) + " is " + str(recall))
+
+test_dataset = tf.keras.utils.image_dataset_from_directory(test_dir,
+                                                           shuffle=True,
+                                                           batch_size=BATCH_SIZE,
+                                                           image_size=IMG_SIZE)
 
 loss, accuracy = model50.evaluate(test_dataset)
 print('Test accuracy :', accuracy)
